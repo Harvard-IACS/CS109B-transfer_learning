@@ -32,20 +32,6 @@ CLASSES_TO_KEEP = [0,1,7,8,12,15]
 # Define helper functions for inference/visualization.
 # ---------------------------
 
-def plot_history(histories, titles):
-    plt.figure(figsize=(12, 6))
-    for history, title in zip(histories, titles):
-        loss = history.history['loss']
-        val_loss = history.history['val_loss']
-
-        plt.plot(range(1, len(loss)+1), loss, label='Training Loss: ' + title)
-        plt.plot(range(1, len(loss)+1), val_loss, label='Validation Loss: ' + title)
-        plt.legend()
-        plt.ylabel('Cross Entropy')
-        plt.title('Training and Validation Loss')
-        plt.xlabel('epoch')
-    plt.show()
-
 def norm_vis(img, mode='rgb'):
     img_norm = (img - img.min()) / (img.max() - img.min())
     return img_norm if mode == 'rgb' else np.flip(img_norm, axis=2)
