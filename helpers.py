@@ -19,6 +19,24 @@ import matplotlib.pyplot as plt
 from IPython.display import clear_output
 import cv2
 
+from IPython.display import HTML, display
+from IPython.core.magic import register_cell_magic, register_line_magic
+
+def set_background(color):
+    script = ("var cell = this.closest('.code_cell');"
+              "var editor = cell.querySelector('.input_area');"
+              "editor.style.background='{}';"
+              "this.parentNode.removeChild(this)").format(color)
+    display(HTML('<img src onerror="{}">'.format(script)))
+
+@register_line_magic
+def helper(line):
+    set_background('honeydew')
+
+@register_line_magic
+def runme(line):
+    set_background('blanchedalmond')
+
 LABEL_NAMES = np.asarray([
     'background', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus',
     'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike',
